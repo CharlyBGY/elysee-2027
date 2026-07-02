@@ -1,92 +1,6 @@
-import React, { useState, useMemo, useEffect } from "react";
+import React, { useState, useMemo, useEffect, useRef } from "react";
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from "recharts";
-
-// ─ Données figées au 2 juillet 2026 (sources : Ifop 25/06, Odoxa 26/05, LCP, France 24) ─
-
-const BLOCS = {
-  EXG: { label: "Extrême gauche", color: "#8E1F2F" },
-  GAU: { label: "Gauche", color: "#C7314A" },
-  SOC: { label: "Gauche sociale-démocrate", color: "#E86B8A" },
-  ECO: { label: "Écologistes", color: "#2E9E5B" },
-  CEN: { label: "Bloc central", color: "#E8952F" },
-  DRO: { label: "Droite", color: "#2F5FB3" },
-  EXD: { label: "Extrême droite", color: "#1B3A63" },
-  DIV: { label: "Divers", color: "#6B7280" },
-};
-
-const CANDIDATS = [
-  { nom: "Jordan Bardella", parti: "Rassemblement national", bloc: "EXD", statut: "Pressenti", note: "Plan B du RN si Marine Le Pen reste inéligible. Domine tous les sondages (32 à 36 %).", sondage: 36 },
-  { nom: "Marine Le Pen", parti: "Rassemblement national", bloc: "EXD", statut: "Déclarée", note: "Candidature suspendue à son appel après sa condamnation de mars 2025.", sondage: null },
-  { nom: "Édouard Philippe", parti: "Horizons", bloc: "CEN", statut: "Déclaré", note: "Parti en campagne dès septembre 2024. En recul dans les dernières vagues.", sondage: 14 },
-  { nom: "Jean-Luc Mélenchon", parti: "La France insoumise", bloc: "GAU", statut: "Déclaré", note: "4e candidature confirmée fin mai 2026. Forte dynamique, près de 200 000 soutiens en ligne.", sondage: 13 },
-  { nom: "Raphaël Glucksmann", parti: "Place publique", bloc: "SOC", statut: "Déclaré", note: "Espace social-démocrate, en concurrence directe avec Mélenchon pour la 2e place à gauche.", sondage: 9 },
-  { nom: "Gabriel Attal", parti: "Renaissance", bloc: "CEN", statut: "Déclaré", note: "Progresse mais reste derrière Édouard Philippe dans le bloc central.", sondage: 8 },
-  { nom: "Bruno Retailleau", parti: "Les Républicains", bloc: "DRO", statut: "Déclaré", note: "Porte la candidature LR face à Xavier Bertrand.", sondage: 8 },
-  { nom: "Éric Zemmour", parti: "Reconquête", bloc: "EXD", statut: "Déclaré", note: "Deuxième candidature, autour de 4 %.", sondage: 4 },
-  { nom: "Fabien Roussel", parti: "PCF", bloc: "GAU", statut: "Congrès", note: "Candidature tranchée au congrès du PCF début juillet à Lille. Les militants ont voté à plus de 60 % pour une candidature communiste.", sondage: 3 },
-  { nom: "Marine Tondelier", parti: "Les Écologistes", bloc: "ECO", statut: "Déclarée", note: "Déclarée le 22 octobre 2025, \"un acte d'amour pour la France\".", sondage: 2.5 },
-  { nom: "Nicolas Dupont-Aignan", parti: "Debout la France", bloc: "EXD", statut: "Déclaré", note: "4e candidature, annoncée en mars 2025.", sondage: 2 },
-  { nom: "Nathalie Arthaud", parti: "Lutte ouvrière", bloc: "EXG", statut: "Déclarée", note: "4e candidature pour porter la voix des travailleurs.", sondage: 0.5 },
-  { nom: "François Ruffin", parti: "Debout !", bloc: "GAU", statut: "Déclaré", note: "Le \"pari du peuple\", campagne lancée en avril 2026.", sondage: null },
-  { nom: "Karim Bouamrane", parti: "PS", bloc: "SOC", statut: "Déclaré", note: "Maire de Saint-Ouen, déclaré le 9 juin 2026 : \"pour une France humaine et une France forte\".", sondage: null },
-  { nom: "Jérôme Guedj", parti: "PS", bloc: "SOC", statut: "Déclaré", note: "Déclaré le 5 février 2026, sans passer par la primaire, ligne \"gauche républicaine et laïque\".", sondage: null },
-  { nom: "Philippe Brun", parti: "PS", bloc: "SOC", statut: "Primaire", note: "Déclaré le 30 juin 2026 sur RMC, dans le cadre d'une éventuelle primaire interne au PS. Candidat \"de la feuille de paie\" et du pouvoir d'achat.", sondage: null },
-  { nom: "Benjamin Lucas-Lundy", parti: "Génération·s", bloc: "SOC", statut: "Primaire", note: "Candidat à la primaire de la gauche dite Front populaire 2027, défenseur de l'union de toute la gauche.", sondage: null },
-  { nom: "Lydie Massard", parti: "Union démocratique bretonne", bloc: "ECO", statut: "Primaire", note: "Ex-eurodéputée, candidate à la primaire de la gauche depuis avril 2026.", sondage: null },
-  { nom: "Bernard Cazeneuve", parti: "La Convention", bloc: "SOC", statut: "Pressenti", note: "\"Si c'est à moi de prendre cette responsabilité, je la prendrai.\" Pas de candidature à une primaire.", sondage: null },
-  { nom: "Xavier Bertrand", parti: "Sans étiquette (ex LR)", bloc: "DRO", statut: "Déclaré", note: "Se présente cette fois hors du cadre LR.", sondage: null },
-  { nom: "Clémentine Autain", parti: "L'Après", bloc: "GAU", statut: "Primaire", note: "Candidate à la primaire de la gauche dite Front populaire 2027.", sondage: null },
-  { nom: "Delphine Batho", parti: "Génération écologie", bloc: "ECO", statut: "Déclarée", note: "\"Reconstruire une écologie capable de gouverner\".", sondage: null },
-  { nom: "Dominique de Villepin", parti: "La France humaniste", bloc: "DIV", statut: "Pressenti", note: "Multiplie les déplacements, une centaine de personnes mobilisées sur les parrainages.", sondage: null },
-  { nom: "François Hollande", parti: "PS", bloc: "SOC", statut: "Pressenti", note: "Hypothèse testée par les instituts (Ipsos juin 2026), pas de déclaration officielle.", sondage: null },
-];
-
-const FIL = [
-  { date: "30 juin 2026", type: "Parti", titre: "Le PS renvoie la primaire aux militants", texte: "À l'issue du conseil national, les militants socialistes voteront le 9 juillet entre la grande primaire de gauche (ligne Faure) et une désignation resserrée issue du pôle socialiste (ligne Vallaud).", bloc: "SOC" },
-  { date: "30 juin 2026", type: "Déclaration", titre: "Philippe Brun se déclare", texte: "Le député PS de l'Eure annonce sur RMC sa candidature dans le cadre d'une éventuelle primaire interne, en candidat de la feuille de paie.", bloc: "SOC" },
-  { date: "25 juin 2026", type: "Sondage", titre: "Ifop : Bardella à 36 %", texte: "Nouvelle vague Ifop-Fiducial : Bardella 36 %, Philippe 14 %, Mélenchon 13 %, Glucksmann 9 %, Attal et Retailleau 8 %.", bloc: "EXD" },
-  { date: "24 juin 2026", type: "Sondage", titre: "Le duel souhaité : Philippe-Bardella", texte: "Selon Ifop pour Marianne, le second tour Philippe contre Bardella est l'affiche la plus souhaitée par les Français.", bloc: "CEN" },
-  { date: "9 juin 2026", type: "Déclaration", titre: "Karim Bouamrane se lance", texte: "Le maire PS de Saint-Ouen annonce sa candidature : \"Je suis la candidature qui fédère.\"", bloc: "SOC" },
-  { date: "Début juin 2026", type: "Parti", titre: "Le PCF vote pour une candidature", texte: "Plus de 60 % des militants se prononcent pour une candidature issue de leurs rangs. Décision au congrès de Lille début juillet.", bloc: "GAU" },
-  { date: "26 mai 2026", type: "Sondage", titre: "Odoxa : Mélenchon bondit", texte: "Mélenchon gagne 4 points à 16 % et talonne Philippe (17 %). Au second tour, Bardella l'emporterait 52-48 face à Philippe.", bloc: "GAU" },
-  { date: "Fin mai 2026", type: "Déclaration", titre: "Mélenchon confirme sa 4e candidature", texte: "Le leader de LFI sera sur la ligne de départ pour la quatrième fois consécutive.", bloc: "GAU" },
-  { date: "Mai 2026", type: "Agenda", titre: "Dates du scrutin fixées", texte: "Le Conseil des ministres arrête les dates : 1er tour le 18 avril 2027, 2nd tour le 2 mai 2027.", bloc: "DIV" },
-  { date: "25 avril 2026", type: "Déclaration", titre: "Ruffin fait le \"pari du peuple\"", texte: "Le député-reporter lance sa campagne avec son mouvement Debout !.", bloc: "GAU" },
-  { date: "5 février 2026", type: "Déclaration", titre: "Guedj candidat sans primaire", texte: "Le socialiste se déclare pour une gauche \"républicaine, universaliste et laïque\", hors primaire.", bloc: "SOC" },
-  { date: "22 octobre 2025", type: "Déclaration", titre: "Tondelier se déclare", texte: "La patronne des Écologistes annonce \"un acte d'amour pour la France\".", bloc: "ECO" },
-];
-
-const AGENDA = [
-  { date: "Début juillet 2026", evt: "Congrès du PCF à Lille : décision sur la candidature Roussel" },
-  { date: "9 juillet 2026", evt: "Vote des militants PS : grande primaire de gauche ou désignation resserrée au sein du pôle socialiste" },
-  { date: "11 octobre 2026", evt: "Primaire de la gauche unitaire (L'Après, Écologistes, Debout !, Génération·s, UDB), sans LFI, Place publique ni PCF" },
-  { date: "Mars 2027", evt: "Dépôt des 500 parrainages et publication de la liste officielle des candidats" },
-  { date: "18 avril 2027", evt: "Premier tour de l'élection présidentielle" },
-  { date: "2 mai 2027", evt: "Second tour de l'élection présidentielle" },
-];
-
-const SERIES = [
-  { key: "Bardella", color: "#1B3A63" },
-  { key: "Philippe", color: "#E8952F" },
-  { key: "Mélenchon", color: "#C7314A" },
-  { key: "Glucksmann", color: "#E86B8A" },
-  { key: "Attal", color: "#9333EA" },
-  { key: "Retailleau", color: "#2563EB" },
-  { key: "Zemmour", color: "#64748B" },
-  { key: "Roussel", color: "#7F1D1D" },
-  { key: "Tondelier", color: "#16A34A" },
-  { key: "Dupont-Aignan", color: "#78350F" },
-  { key: "Arthaud", color: "#DB2777" },
-];
-
-const TENDANCE = [
-  { vague: "Mars 26", Bardella: 31, Philippe: 21, "Mélenchon": 12, Glucksmann: 12, Attal: 6, Retailleau: 5, Zemmour: 5, Roussel: 3, Tondelier: 3, "Dupont-Aignan": 2, Arthaud: 0.5 },
-  { vague: "Avril 26", Bardella: 32, Philippe: 19, "Mélenchon": 13, Glucksmann: 11, Attal: 6, Retailleau: 6, Zemmour: 5, Roussel: 3, Tondelier: 3, "Dupont-Aignan": 2, Arthaud: 0.5 },
-  { vague: "Mai 26", Bardella: 32, Philippe: 17, "Mélenchon": 16, Glucksmann: 11, Attal: 7, Retailleau: 7, Zemmour: 4, Roussel: 3, Tondelier: 2.5, "Dupont-Aignan": 2, Arthaud: 0.5 },
-  { vague: "Juin 26", Bardella: 36, Philippe: 14, "Mélenchon": 13, Glucksmann: 9, Attal: 8, Retailleau: 8, Zemmour: 4, Roussel: 3, Tondelier: 2.5, "Dupont-Aignan": 2, Arthaud: 0.5 },
-];
-
-const LIGNES_PAR_DEFAUT = ["Bardella", "Philippe", "Mélenchon", "Glucksmann"];
+import { BLOCS, CANDIDATS, FIL, AGENDA, SERIES, TENDANCE, LIGNES_PAR_DEFAUT, NOTE_SONDAGES, SECOND_TOUR } from "./donnees.js";
 
 const STATUT_STYLE = {
   "Déclaré": { bg: "#E7F0E9", fg: "#1F6B3A" },
@@ -95,6 +9,8 @@ const STATUT_STYLE = {
   "Congrès": { bg: "#FDF1DC", fg: "#8A5A10" },
   "Pressenti": { bg: "#ECEEF3", fg: "#4B5563" },
 };
+
+const SEUIL_MAJ = 55; // px de tirage pour déclencher le rafraîchissement
 
 function normaliser(str) {
   return str.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
@@ -116,6 +32,10 @@ export default function Elysee2027() {
   const [recherche, setRecherche] = useState("");
   const [lignesAffichees, setLignesAffichees] = useState(LIGNES_PAR_DEFAUT);
   const [copie, setCopie] = useState(null);
+  const [tirage, setTirage] = useState(0);
+  const [enMaj, setEnMaj] = useState(false);
+  const departY = useRef(null);
+  const mainRef = useRef(null);
   const [sombre, setSombre] = useState(() => {
     if (typeof window === "undefined") return false;
     return window.localStorage.getItem("elysee2027-theme") === "sombre";
@@ -169,6 +89,35 @@ export default function Elysee2027() {
     URL.revokeObjectURL(url);
   }
 
+  // ─ Tirer depuis le haut de la liste pour recharger l'app (PWA plein écran) ─
+  function surToucherDebut(e) {
+    if (mainRef.current && mainRef.current.scrollTop <= 0) {
+      departY.current = e.touches[0].clientY;
+    } else {
+      departY.current = null;
+    }
+  }
+
+  function surToucherBouge(e) {
+    if (departY.current === null || enMaj) return;
+    const dy = e.touches[0].clientY - departY.current;
+    if (dy > 0 && mainRef.current && mainRef.current.scrollTop <= 0) {
+      setTirage(Math.min(dy * 0.4, 80));
+    } else if (tirage !== 0) {
+      setTirage(0);
+    }
+  }
+
+  function surToucherFin() {
+    departY.current = null;
+    if (tirage >= SEUIL_MAJ && !enMaj) {
+      setEnMaj(true);
+      window.location.reload();
+    } else {
+      setTirage(0);
+    }
+  }
+
   const font = "'Archivo', -apple-system, 'Segoe UI', sans-serif";
 
   const theme = sombre ? {
@@ -190,6 +139,7 @@ export default function Elysee2027() {
         input { font-family: inherit; }
         .carte { transition: transform .12s ease; }
         .carte:active { transform: scale(.985); }
+        @keyframes tourner { to { transform: rotate(360deg); } }
         @media (prefers-reduced-motion: reduce) { .carte { transition: none; } .barre { transition: none !important; } }
       `}</style>
 
@@ -218,13 +168,38 @@ export default function Elysee2027() {
           </div>
         </header>
 
+        {/* Indicateur de rafraîchissement */}
+        <div aria-hidden={tirage === 0 && !enMaj} style={{ position: "relative", height: 0, overflow: "visible", zIndex: 5 }}>
+          <div style={{
+            position: "absolute", left: "50%", top: 6,
+            transform: `translateX(-50%) translateY(${tirage - 40}px) rotate(${tirage * 3}deg)`,
+            opacity: enMaj ? 1 : Math.min(tirage / SEUIL_MAJ, 1),
+            width: 32, height: 32, borderRadius: 99, background: theme.cardBg,
+            border: `1px solid ${theme.border}`, boxShadow: "0 2px 8px rgba(27,34,55,.15)",
+            display: "flex", alignItems: "center", justifyContent: "center",
+            transition: departY.current === null ? "transform .2s ease, opacity .2s ease" : "none",
+            animation: enMaj ? "tourner .8s linear infinite" : "none",
+          }}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={tirage >= SEUIL_MAJ || enMaj ? "#1F6B3A" : theme.textMuted} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M21 12a9 9 0 1 1-3-6.7" />
+              <polyline points="21 3 21 9 15 9" />
+            </svg>
+          </div>
+        </div>
+
         {/* Contenu */}
-        <main style={{ flex: 1, overflowY: "auto", padding: "16px 14px 90px" }}>
+        <main
+          ref={mainRef}
+          onTouchStart={surToucherDebut}
+          onTouchMove={surToucherBouge}
+          onTouchEnd={surToucherFin}
+          style={{ flex: 1, overflowY: "auto", padding: "16px 14px 90px", transform: tirage ? `translateY(${tirage}px)` : "none", transition: departY.current === null ? "transform .2s ease" : "none" }}
+        >
 
           {tab === "sondages" && (
             <div>
               <p style={{ fontSize: 12, color: theme.textMuted, margin: "0 0 12px", lineHeight: 1.5 }}>
-                Dernière vague : Ifop-Fiducial, 25 juin 2026. Marge d'erreur de 2 à 3 points. À un an du scrutin, les sondages ont une valeur prédictive limitée.
+                {NOTE_SONDAGES}
               </p>
 
               {sondes.map(c => (
@@ -268,16 +243,16 @@ export default function Elysee2027() {
               <div style={{ background: "#1B2237", color: "#fff", borderRadius: 14, padding: "14px 16px", marginTop: 16 }}>
                 <div style={{ fontSize: 11, letterSpacing: "0.14em", textTransform: "uppercase", color: "#8FA0C9", fontWeight: 700 }}>Hypothèse de second tour</div>
                 <div style={{ display: "flex", alignItems: "center", gap: 10, marginTop: 10 }}>
-                  <div style={{ flex: 52 }}>
-                    <div style={{ fontSize: 13, fontWeight: 700 }}>Bardella 52 %</div>
-                    <div style={{ height: 8, background: BLOCS.EXD.color, borderRadius: "99px 0 0 99px", marginTop: 5, filter: "brightness(1.6)" }} />
+                  <div style={{ flex: SECOND_TOUR.gauche.score }}>
+                    <div style={{ fontSize: 13, fontWeight: 700 }}>{SECOND_TOUR.gauche.nom} {SECOND_TOUR.gauche.score} %</div>
+                    <div style={{ height: 8, background: BLOCS[SECOND_TOUR.gauche.bloc].color, borderRadius: "99px 0 0 99px", marginTop: 5, filter: "brightness(1.6)" }} />
                   </div>
-                  <div style={{ flex: 48, textAlign: "right" }}>
-                    <div style={{ fontSize: 13, fontWeight: 700 }}>Philippe 48 %</div>
-                    <div style={{ height: 8, background: BLOCS.CEN.color, borderRadius: "0 99px 99px 0", marginTop: 5 }} />
+                  <div style={{ flex: SECOND_TOUR.droite.score, textAlign: "right" }}>
+                    <div style={{ fontSize: 13, fontWeight: 700 }}>{SECOND_TOUR.droite.nom} {SECOND_TOUR.droite.score} %</div>
+                    <div style={{ height: 8, background: BLOCS[SECOND_TOUR.droite.bloc].color, borderRadius: "0 99px 99px 0", marginTop: 5 }} />
                   </div>
                 </div>
-                <div style={{ fontSize: 10.5, color: "#8FA0C9", marginTop: 9 }}>Odoxa, 20-21 mai 2026, 1 005 personnes. Il y a deux mois, le rapport était inversé.</div>
+                <div style={{ fontSize: 10.5, color: "#8FA0C9", marginTop: 9 }}>{SECOND_TOUR.source}</div>
               </div>
             </div>
           )}
@@ -338,7 +313,7 @@ export default function Elysee2027() {
                 </div>
               ))}
               <p style={{ fontSize: 11, color: theme.textMuted2, lineHeight: 1.5, marginTop: 10 }}>
-                22 candidatures officielles recensées à ce jour. Chaque candidat devra réunir 500 parrainages d'élus issus d'au moins 30 départements pour figurer sur la liste officielle en mars 2027.
+                {CANDIDATS.length} candidatures recensées à ce jour. Chaque candidat devra réunir 500 parrainages d'élus issus d'au moins 30 départements pour figurer sur la liste officielle en mars 2027.
               </p>
               <button onClick={exporterDonnees}
                 style={{ marginTop: 12, fontSize: 12, fontWeight: 700, color: theme.text, background: theme.cardBg, border: `1px solid ${theme.border}`, borderRadius: 10, padding: "8px 14px", cursor: "pointer" }}>
