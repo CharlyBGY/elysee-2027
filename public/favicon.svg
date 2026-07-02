@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="112" fill="#1B2237"/>
+  <text x="256" y="248" font-family="Archivo, -apple-system, 'Segoe UI', sans-serif" font-size="148" font-weight="800" fill="#FFFFFF" text-anchor="middle">É27</text>
+  <rect x="96" y="322" width="320" height="26" rx="13" fill="#2B3A5C"/>
+  <rect x="96" y="322" width="208" height="26" rx="13" fill="#E8952F"/>
+  <rect x="96" y="378" width="320" height="26" rx="13" fill="#2B3A5C"/>
+  <rect x="96" y="378" width="128" height="26" rx="13" fill="#C7314A"/>
+</svg>
