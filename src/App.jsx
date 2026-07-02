@@ -118,9 +118,7 @@ export default function Elysee2027() {
   const [copie, setCopie] = useState(null);
   const [sombre, setSombre] = useState(() => {
     if (typeof window === "undefined") return false;
-    const enregistre = window.localStorage.getItem("elysee2027-theme");
-    if (enregistre) return enregistre === "sombre";
-    return !!(window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches);
+    return window.localStorage.getItem("elysee2027-theme") === "sombre";
   });
 
   useEffect(() => {
@@ -198,22 +196,24 @@ export default function Elysee2027() {
       <div style={{ width: "100%", maxWidth: 420, background: theme.containerBg, minHeight: "100vh", display: "flex", flexDirection: "column", boxShadow: "0 0 40px rgba(27,34,55,.12)" }}>
 
         {/* En-tête */}
-        <header style={{ position: "relative", background: "#1B2237", color: "#fff", padding: "20px 18px 16px" }}>
-          <button
-            onClick={() => setSombre(s => !s)}
-            title={sombre ? "Passer en mode clair" : "Passer en mode sombre"}
-            style={{ position: "absolute", top: 14, right: 18, width: 28, height: 28, borderRadius: 99, border: "none", background: "rgba(255,255,255,.14)", color: "#fff", fontSize: 13, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}
-          >
-            {sombre ? "☀️" : "🌙"}
-          </button>
+        <header style={{ background: "#1B2237", color: "#fff", padding: "20px 18px 16px" }}>
           <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between" }}>
             <div>
               <div style={{ fontSize: 11, letterSpacing: "0.18em", textTransform: "uppercase", color: "#8FA0C9", fontWeight: 600 }}>Présidentielle</div>
               <h1 style={{ margin: "2px 0 0", fontSize: 26, fontWeight: 800, letterSpacing: "-0.01em" }}>Élysée 2027</h1>
             </div>
-            <div style={{ textAlign: "right" }}>
-              <div style={{ fontSize: 24, fontWeight: 800, lineHeight: 1 }}>J-{jours}</div>
-              <div style={{ fontSize: 10.5, color: "#8FA0C9", marginTop: 3 }}>1er tour : 18 avril 2027</div>
+            <div style={{ display: "flex", alignItems: "flex-start", gap: 12 }}>
+              <button
+                onClick={() => setSombre(s => !s)}
+                title={sombre ? "Passer en mode clair" : "Passer en mode sombre"}
+                style={{ width: 30, height: 30, borderRadius: 99, border: "none", background: "rgba(255,255,255,.14)", color: "#fff", fontSize: 14, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}
+              >
+                {sombre ? "☀️" : "🌙"}
+              </button>
+              <div style={{ textAlign: "right" }}>
+                <div style={{ fontSize: 24, fontWeight: 800, lineHeight: 1 }}>J-{jours}</div>
+                <div style={{ fontSize: 10.5, color: "#8FA0C9", marginTop: 3 }}>1er tour : 18 avril 2027</div>
+              </div>
             </div>
           </div>
         </header>
@@ -314,9 +314,21 @@ export default function Elysee2027() {
                     <div style={{ display: "flex", alignItems: "center", gap: 8, flexShrink: 0 }}>
                       {c.sondage !== null && <span style={{ fontWeight: 800, fontSize: 15 }}>{c.sondage} %</span>}
                       <Badge statut={c.statut} />
-                      <button onClick={e => { e.stopPropagation(); partager(c); }} title="Partager cette fiche"
-                        style={{ background: "none", border: "none", cursor: "pointer", fontSize: 14, color: theme.textMuted, padding: 2, lineHeight: 1 }}>
-                        {copie === c.nom ? "✓" : "⤴"}
+                      <button onClick={e => { e.stopPropagation(); partager(c); }} title="Partager cette fiche" aria-label={`Partager la fiche de ${c.nom}`}
+                        style={{ background: "none", border: "none", cursor: "pointer", color: copie === c.nom ? "#1F6B3A" : theme.textMuted, padding: 2, lineHeight: 0 }}>
+                        {copie === c.nom ? (
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                            <polyline points="20 6 9 17 4 12" />
+                          </svg>
+                        ) : (
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <circle cx="18" cy="5" r="3" />
+                            <circle cx="6" cy="12" r="3" />
+                            <circle cx="18" cy="19" r="3" />
+                            <line x1="8.6" y1="10.6" x2="15.4" y2="6.5" />
+                            <line x1="8.6" y1="13.4" x2="15.4" y2="17.5" />
+                          </svg>
+                        )}
                       </button>
                     </div>
                   </div>
