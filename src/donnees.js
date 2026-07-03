@@ -49,6 +49,20 @@ export const CANDIDATS = [
   { nom: "François Hollande", parti: "PS", bloc: "SOC", statut: "Pressenti", note: "Hypothèse testée par les instituts (Ipsos juin 2026), pas de déclaration officielle.", sondage: null },
 ];
 
+// L'essentiel de la semaine : 4 à 5 brèves maximum, factuel et sourcé.
+// Ligne éditoriale : faits structurants uniquement (déclarations, décisions de
+// partis, sondages marquants, échéances) — pas de petites phrases ni polémiques.
+export const ESSENTIEL = {
+  semaine: "du 29 juin au 5 juillet 2026",
+  breves: [
+    { titre: "Le PCF tranche à Lille", texte: "Congrès décisif du 3 au 5 juillet : les communistes décident du sort de la candidature Roussel, déjà plébiscitée par plus de 60 % des militants." },
+    { titre: "Le PS suspendu au vote militant", texte: "Le 9 juillet, les adhérents choisiront entre la grande primaire de gauche (ligne Faure) et une désignation resserrée du pôle socialiste (ligne Vallaud)." },
+    { titre: "Lagarde entrouvre la porte", texte: "La présidente de la BCE n'exclut pas un départ anticipé de Francfort pour porter \"une voix européenne\" dans le débat présidentiel (Les Échos)." },
+    { titre: "Ruffin repart sur la probité", texte: "Le candidat à la primaire de la gauche propose une \"loi de séparation de l'argent et de l'État\" pour relancer sa campagne." },
+    { titre: "Brun, candidat de la feuille de paie", texte: "Le député PS de l'Eure s'est déclaré le 30 juin sur RMC, dans le cadre d'une éventuelle primaire interne socialiste." },
+  ],
+};
+
 // Fil d'actualité, du plus récent au plus ancien.
 // type : "Sondage" | "Déclaration" | "Parti" | "Campagne" | "Agenda"
 export const FIL = [

@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect, useRef } from "react";
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from "recharts";
-import { BLOCS, CANDIDATS, FIL, AGENDA, SERIES, TENDANCE, LIGNES_PAR_DEFAUT, NOTE_SONDAGES, SECOND_TOUR, MISE_A_JOUR } from "./donnees.js";
+import { BLOCS, CANDIDATS, FIL, AGENDA, SERIES, TENDANCE, LIGNES_PAR_DEFAUT, NOTE_SONDAGES, SECOND_TOUR, MISE_A_JOUR, ESSENTIEL } from "./donnees.js";
 
 const STATUT_STYLE = {
   "Déclaré": { bg: "#E7F0E9", fg: "#1F6B3A" },
@@ -329,6 +329,19 @@ export default function Elysee2027() {
 
           {tab === "fil" && (
             <div>
+              <div style={{ background: "#1B2237", color: "#fff", borderRadius: 14, padding: "15px 16px", marginBottom: 18 }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 8 }}>
+                  <div style={{ fontSize: 11, letterSpacing: "0.14em", textTransform: "uppercase", color: "#8FA0C9", fontWeight: 700 }}>L'essentiel de la semaine</div>
+                  <div style={{ fontSize: 10.5, color: "#8FA0C9", flexShrink: 0 }}>{ESSENTIEL.semaine}</div>
+                </div>
+                {ESSENTIEL.breves.map((b, i) => (
+                  <div key={i} style={{ marginTop: 11, paddingTop: 11, borderTop: i === 0 ? "none" : "1px solid rgba(255,255,255,.1)" }}>
+                    <div style={{ fontSize: 13, fontWeight: 700 }}>{b.titre}</div>
+                    <div style={{ fontSize: 12, color: "#C9D2E5", lineHeight: 1.5, marginTop: 2 }}>{b.texte}</div>
+                  </div>
+                ))}
+              </div>
+
               {FIL.map((e, i) => (
                 <div key={i} style={{ display: "flex", gap: 12, marginBottom: 4 }}>
                   <div style={{ display: "flex", flexDirection: "column", alignItems: "center", width: 12, flexShrink: 0 }}>
