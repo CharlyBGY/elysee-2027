@@ -154,9 +154,15 @@ export default function Elysee2027() {
         .carte:active { transform: scale(.985); }
         @keyframes tourner { to { transform: rotate(360deg); } }
         @media (prefers-reduced-motion: reduce) { .carte { transition: none; } .barre { transition: none !important; } }
+        /* Sur mobile, l'app occupe toute la largeur ; sur grand écran, carte centrée de 420 px */
+        .app-conteneur { width: 100%; max-width: 420px; min-height: 100dvh; }
+        .app-nav { position: fixed; bottom: 0; width: 100%; max-width: 420px; }
+        @media (max-width: 767px) {
+          .app-conteneur, .app-nav { max-width: none; }
+        }
       `}</style>
 
-      <div style={{ width: "100%", maxWidth: 420, background: theme.containerBg, minHeight: "100vh", display: "flex", flexDirection: "column", boxShadow: "0 0 40px rgba(27,34,55,.12)" }}>
+      <div className="app-conteneur" style={{ background: theme.containerBg, display: "flex", flexDirection: "column", boxShadow: "0 0 40px rgba(27,34,55,.12)" }}>
 
         {/* En-tête */}
         <header style={{ background: "#1B2237", color: "#fff", padding: "20px 18px 16px" }}>
@@ -426,7 +432,7 @@ export default function Elysee2027() {
         </main>
 
         {/* Navigation basse */}
-        <nav style={{ position: "fixed", bottom: 0, width: "100%", maxWidth: 420, background: theme.navBg, borderTop: `1px solid ${theme.border}`, display: "flex", padding: "8px 6px calc(8px + env(safe-area-inset-bottom))" }}>
+        <nav className="app-nav" style={{ background: theme.navBg, borderTop: `1px solid ${theme.border}`, display: "flex", padding: "8px 6px calc(8px + env(safe-area-inset-bottom))" }}>
           {[
             { id: "sondages", label: "Sondages", ico: "📊" },
             { id: "candidats", label: "Candidats", ico: "🗳️" },
