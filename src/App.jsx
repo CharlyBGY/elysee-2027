@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect, useRef } from "react";
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from "recharts";
-import { BLOCS, CANDIDATS, FIL, AGENDA, SERIES, TENDANCE, LIGNES_PAR_DEFAUT, NOTE_SONDAGES, SECOND_TOUR } from "./donnees.js";
+import { BLOCS, CANDIDATS, FIL, AGENDA, SERIES, TENDANCE, LIGNES_PAR_DEFAUT, NOTE_SONDAGES, SECOND_TOUR, MISE_A_JOUR } from "./donnees.js";
 
 const STATUT_STYLE = {
   "Déclaré": { bg: "#E7F0E9", fg: "#1F6B3A" },
@@ -167,6 +167,11 @@ export default function Elysee2027() {
             </div>
           </div>
         </header>
+
+        {/* Bandeau de fraîcheur des données */}
+        <div style={{ textAlign: "center", fontSize: 10.5, fontWeight: 600, color: theme.textMuted2, padding: "6px 0", borderBottom: `1px solid ${theme.border}`, background: theme.containerBg }}>
+          Données à jour au {MISE_A_JOUR}
+        </div>
 
         {/* Indicateur de rafraîchissement */}
         <div aria-hidden={tirage === 0 && !enMaj} style={{ position: "relative", height: 0, overflow: "visible", zIndex: 5 }}>
@@ -355,6 +360,43 @@ export default function Elysee2027() {
               </div>
             </div>
           )}
+
+          {tab === "apropos" && (
+            <div>
+              <div style={{ background: theme.cardBg, border: `1px solid ${theme.border}`, borderRadius: 12, padding: "16px 16px", marginBottom: 10 }}>
+                <h2 style={{ fontSize: 16, fontWeight: 800, margin: "0 0 8px" }}>Élysée 2027</h2>
+                <p style={{ fontSize: 12.5, color: theme.noteText, lineHeight: 1.6, margin: 0 }}>
+                  Application indépendante de suivi de l'élection présidentielle française de 2027 : sondages, candidats, fil d'actualité et agenda électoral. Elle agrège des données publiques, cite ses sources et ne soutient aucun candidat.
+                </p>
+              </div>
+
+              <div style={{ background: theme.cardBg, border: `1px solid ${theme.border}`, borderRadius: 12, padding: "16px 16px", marginBottom: 10 }}>
+                <div style={{ fontSize: 11, letterSpacing: "0.1em", textTransform: "uppercase", color: theme.textMuted2, fontWeight: 700, marginBottom: 6 }}>Données</div>
+                <p style={{ fontSize: 12.5, color: theme.noteText, lineHeight: 1.6, margin: 0 }}>
+                  À jour au <strong>{MISE_A_JOUR}</strong>. Sources : instituts de sondage (Ifop-Fiducial, Odoxa, Ipsos…), LCP, franceinfo, Les Échos, France 24. Les sondages sont donnés avec une marge d'erreur de 2 à 3 points.
+                </p>
+              </div>
+
+              <div style={{ background: theme.cardBg, border: `1px solid ${theme.border}`, borderRadius: 12, padding: "16px 16px", marginBottom: 10 }}>
+                <div style={{ fontSize: 11, letterSpacing: "0.1em", textTransform: "uppercase", color: theme.textMuted2, fontWeight: 700, marginBottom: 6 }}>Développée par</div>
+                <div style={{ fontSize: 15, fontWeight: 800 }}>Sébastien Baguerey</div>
+                <a href="https://www.linkedin.com/in/sbrey84/" target="_blank" rel="noopener noreferrer"
+                  style={{ display: "inline-flex", alignItems: "center", gap: 7, marginTop: 10, background: "#0A66C2", color: "#fff", fontSize: 12.5, fontWeight: 700, padding: "8px 14px", borderRadius: 8, textDecoration: "none" }}>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z" />
+                  </svg>
+                  Me retrouver sur LinkedIn
+                </a>
+              </div>
+
+              <div style={{ background: theme.cardBg, border: `1px solid ${theme.border}`, borderRadius: 12, padding: "16px 16px" }}>
+                <div style={{ fontSize: 11, letterSpacing: "0.1em", textTransform: "uppercase", color: theme.textMuted2, fontWeight: 700, marginBottom: 6 }}>Installer l'application</div>
+                <p style={{ fontSize: 12.5, color: theme.noteText, lineHeight: 1.6, margin: 0 }}>
+                  Sur iPhone : Partager → « Sur l'écran d'accueil ». Sur Android : menu ⋮ → « Ajouter à l'écran d'accueil ». L'app fonctionne ensuite en plein écran, même hors ligne. Tirez la liste vers le bas pour récupérer les dernières données.
+                </p>
+              </div>
+            </div>
+          )}
         </main>
 
         {/* Navigation basse */}
@@ -364,6 +406,7 @@ export default function Elysee2027() {
             { id: "candidats", label: "Candidats", ico: "🗳️" },
             { id: "fil", label: "Le fil", ico: "📰" },
             { id: "agenda", label: "Agenda", ico: "📅" },
+            { id: "apropos", label: "À propos", ico: "ℹ️" },
           ].map(t => (
             <button key={t.id} onClick={() => setTab(t.id)}
               style={{ flex: 1, background: "none", border: "none", cursor: "pointer", padding: "6px 0", borderRadius: 10, color: tab === t.id ? theme.text : theme.textMuted2 }}>
