@@ -10,7 +10,10 @@ const STATUT_STYLE = {
   "Pressenti": { bg: "#ECEEF3", fg: "#4B5563" },
 };
 
-const SEUIL_MAJ = 55; // px de tirage pour déclencher le rafraîchissement
+const SEUIL_MAJ = 90; // px de tirage (amorti) pour déclencher le rafraîchissement — soit ~260 px de doigt
+const ZONE_MORTE = 24; // px de doigt ignorés avant d'armer le tirage (évite les déclenchements en navigant)
+const AMORTI = 0.35; // résistance du tirage
+const TIRAGE_MAX = 110;
 
 function normaliser(str) {
   return str.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
@@ -35,6 +38,7 @@ export default function Elysee2027() {
   const [tirage, setTirage] = useState(0);
   const [enMaj, setEnMaj] = useState(false);
   const departY = useRef(null);
+  const departX = useRef(null);
   const mainRef = useRef(null);
   const [sombre, setSombre] = useState(() => {
     if (typeof window === "undefined") return false;
@@ -93,6 +97,7 @@ export default function Elysee2027() {
   function surToucherDebut(e) {
     if (mainRef.current && mainRef.current.scrollTop <= 0) {
       departY.current = e.touches[0].clientY;
+      departX.current = e.touches[0].clientX;
     } else {
       departY.current = null;
     }
@@ -101,8 +106,16 @@ export default function Elysee2027() {
   function surToucherBouge(e) {
     if (departY.current === null || enMaj) return;
     const dy = e.touches[0].clientY - departY.current;
-    if (dy > 0 && mainRef.current && mainRef.current.scrollTop <= 0) {
-      setTirage(Math.min(dy * 0.4, 80));
+    const dx = e.touches[0].clientX - departX.current;
+    // Geste plus horizontal que vertical : c'est de la navigation, on abandonne
+    if (Math.abs(dx) > Math.abs(dy)) {
+      departY.current = null;
+      if (tirage !== 0) setTirage(0);
+      return;
+    }
+    const dyUtile = dy - ZONE_MORTE; // ignore les petits mouvements involontaires
+    if (dyUtile > 0 && mainRef.current && mainRef.current.scrollTop <= 0) {
+      setTirage(Math.min(dyUtile * AMORTI, TIRAGE_MAX));
     } else if (tirage !== 0) {
       setTirage(0);
     }
