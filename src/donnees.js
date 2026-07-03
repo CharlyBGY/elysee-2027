@@ -4,8 +4,8 @@
 //  Après modification sur GitHub, le site se met à jour tout seul.
 // ═══════════════════════════════════════════════════════════════════
 
-// ─ Données figées au 2 juillet 2026 (sources : Ifop 25/06, Odoxa 26/05, LCP, France 24) ─
-export const MISE_A_JOUR = "2 juillet 2026";
+// ─ Données au 3 juillet 2026 (sources : Ifop 25/06, Odoxa 26/05, LCP, Les Échos, franceinfo) ─
+export const MISE_A_JOUR = "3 juillet 2026";
 
 export const BLOCS = {
   EXG: { label: "Extrême gauche", color: "#8E1F2F" },
@@ -30,10 +30,10 @@ export const CANDIDATS = [
   { nom: "Bruno Retailleau", parti: "Les Républicains", bloc: "DRO", statut: "Déclaré", note: "Porte la candidature LR face à Xavier Bertrand.", sondage: 8 },
   { nom: "Éric Zemmour", parti: "Reconquête", bloc: "EXD", statut: "Déclaré", note: "Deuxième candidature, autour de 4 %.", sondage: 4 },
   { nom: "Fabien Roussel", parti: "PCF", bloc: "GAU", statut: "Congrès", note: "Candidature tranchée au congrès du PCF début juillet à Lille. Les militants ont voté à plus de 60 % pour une candidature communiste.", sondage: 3 },
-  { nom: "Marine Tondelier", parti: "Les Écologistes", bloc: "ECO", statut: "Déclarée", note: "Déclarée le 22 octobre 2025, \"un acte d'amour pour la France\".", sondage: 2.5 },
+  { nom: "Marine Tondelier", parti: "Les Écologistes", bloc: "ECO", statut: "Primaire", note: "Déclarée le 22 octobre 2025, \"un acte d'amour pour la France\". Candidate à la primaire de la gauche unitaire du 11 octobre.", sondage: 2.5 },
   { nom: "Nicolas Dupont-Aignan", parti: "Debout la France", bloc: "EXD", statut: "Déclaré", note: "4e candidature, annoncée en mars 2025.", sondage: 2 },
   { nom: "Nathalie Arthaud", parti: "Lutte ouvrière", bloc: "EXG", statut: "Déclarée", note: "4e candidature pour porter la voix des travailleurs.", sondage: 0.5 },
-  { nom: "François Ruffin", parti: "Debout !", bloc: "GAU", statut: "Déclaré", note: "Le \"pari du peuple\", campagne lancée en avril 2026.", sondage: null },
+  { nom: "François Ruffin", parti: "Debout !", bloc: "GAU", statut: "Primaire", note: "Candidat à la primaire de la gauche unitaire, confirmé le 26 janvier 2026. Campagne du \"pari du peuple\" relancée le 2 juillet sur le thème de la probité, après la polémique autour de sa bande dessinée. Une centaine de promesses de parrainages engrangées.", sondage: null },
   { nom: "Karim Bouamrane", parti: "PS", bloc: "SOC", statut: "Déclaré", note: "Maire de Saint-Ouen, déclaré le 9 juin 2026 : \"pour une France humaine et une France forte\".", sondage: null },
   { nom: "Jérôme Guedj", parti: "PS", bloc: "SOC", statut: "Déclaré", note: "Déclaré le 5 février 2026, sans passer par la primaire, ligne \"gauche républicaine et laïque\".", sondage: null },
   { nom: "Philippe Brun", parti: "PS", bloc: "SOC", statut: "Primaire", note: "Déclaré le 30 juin 2026 sur RMC, dans le cadre d'une éventuelle primaire interne au PS. Candidat \"de la feuille de paie\" et du pouvoir d'achat.", sondage: null },
@@ -41,15 +41,20 @@ export const CANDIDATS = [
   { nom: "Lydie Massard", parti: "Union démocratique bretonne", bloc: "ECO", statut: "Primaire", note: "Ex-eurodéputée, candidate à la primaire de la gauche depuis avril 2026.", sondage: null },
   { nom: "Bernard Cazeneuve", parti: "La Convention", bloc: "SOC", statut: "Pressenti", note: "\"Si c'est à moi de prendre cette responsabilité, je la prendrai.\" Pas de candidature à une primaire.", sondage: null },
   { nom: "Xavier Bertrand", parti: "Sans étiquette (ex LR)", bloc: "DRO", statut: "Déclaré", note: "Se présente cette fois hors du cadre LR.", sondage: null },
+  { nom: "David Lisnard", parti: "Nouvelle Énergie (ex LR)", bloc: "DRO", statut: "Déclaré", note: "Maire de Cannes, déclaré le 31 mars 2026 au 20 h de France 2 en quittant LR. Projet \"libéral, sécuritaire, éducatif et scientifique\". Plaide pour une grande primaire ouverte à droite. Crédité d'environ 2 % dans les premières hypothèses testées.", sondage: null },
   { nom: "Clémentine Autain", parti: "L'Après", bloc: "GAU", statut: "Primaire", note: "Candidate à la primaire de la gauche dite Front populaire 2027.", sondage: null },
   { nom: "Delphine Batho", parti: "Génération écologie", bloc: "ECO", statut: "Déclarée", note: "\"Reconstruire une écologie capable de gouverner\".", sondage: null },
   { nom: "Dominique de Villepin", parti: "La France humaniste", bloc: "DIV", statut: "Pressenti", note: "Multiplie les déplacements, une centaine de personnes mobilisées sur les parrainages.", sondage: null },
+  { nom: "Christine Lagarde", parti: "Présidente de la BCE", bloc: "DIV", statut: "Pressenti", note: "N'exclut pas de quitter la BCE avant la fin de son mandat pour porter \"une voix européenne\" dans le débat présidentiel (Les Échos, 2 juillet 2026). Aucune candidature déclarée.", sondage: null },
   { nom: "François Hollande", parti: "PS", bloc: "SOC", statut: "Pressenti", note: "Hypothèse testée par les instituts (Ipsos juin 2026), pas de déclaration officielle.", sondage: null },
 ];
 
 // Fil d'actualité, du plus récent au plus ancien.
-// type : "Sondage" | "Déclaration" | "Parti" | "Agenda"
+// type : "Sondage" | "Déclaration" | "Parti" | "Campagne" | "Agenda"
 export const FIL = [
+  { date: "3 juillet 2026", type: "Parti", titre: "Le PCF ouvre son congrès décisif à Lille", texte: "Jusqu'au 5 juillet, les communistes tranchent la question de la candidature Roussel. Les militants ont déjà voté à plus de 60 % pour une candidature issue de leurs rangs.", bloc: "GAU" },
+  { date: "2 juillet 2026", type: "Déclaration", titre: "Lagarde n'exclut pas de peser sur 2027", texte: "Dans Les Échos, la présidente de la BCE n'écarte pas un départ anticipé de Francfort pour porter \"une voix européenne\" dans le débat présidentiel. Elle ne déclare aucune candidature.", bloc: "DIV" },
+  { date: "2 juillet 2026", type: "Campagne", titre: "Ruffin relance sa campagne sur la probité", texte: "Après la polémique autour de sa bande dessinée, le candidat propose une \"loi de séparation de l'argent et de l'État\" : dix ans d'interdiction de pantouflage pour les ministres, fin des avantages des anciens présidents.", bloc: "GAU" },
   { date: "30 juin 2026", type: "Parti", titre: "Le PS renvoie la primaire aux militants", texte: "À l'issue du conseil national, les militants socialistes voteront le 9 juillet entre la grande primaire de gauche (ligne Faure) et une désignation resserrée issue du pôle socialiste (ligne Vallaud).", bloc: "SOC" },
   { date: "30 juin 2026", type: "Déclaration", titre: "Philippe Brun se déclare", texte: "Le député PS de l'Eure annonce sur RMC sa candidature dans le cadre d'une éventuelle primaire interne, en candidat de la feuille de paie.", bloc: "SOC" },
   { date: "25 juin 2026", type: "Sondage", titre: "Ifop : Bardella à 36 %", texte: "Nouvelle vague Ifop-Fiducial : Bardella 36 %, Philippe 14 %, Mélenchon 13 %, Glucksmann 9 %, Attal et Retailleau 8 %.", bloc: "EXD" },
@@ -60,12 +65,13 @@ export const FIL = [
   { date: "Fin mai 2026", type: "Déclaration", titre: "Mélenchon confirme sa 4e candidature", texte: "Le leader de LFI sera sur la ligne de départ pour la quatrième fois consécutive.", bloc: "GAU" },
   { date: "Mai 2026", type: "Agenda", titre: "Dates du scrutin fixées", texte: "Le Conseil des ministres arrête les dates : 1er tour le 18 avril 2027, 2nd tour le 2 mai 2027.", bloc: "DIV" },
   { date: "25 avril 2026", type: "Déclaration", titre: "Ruffin fait le \"pari du peuple\"", texte: "Le député-reporter lance sa campagne avec son mouvement Debout !.", bloc: "GAU" },
+  { date: "31 mars 2026", type: "Déclaration", titre: "Lisnard quitte LR et se déclare", texte: "Au 20 h de France 2, le maire de Cannes annonce sa candidature avec son mouvement Nouvelle Énergie et plaide pour une grande primaire ouverte à droite.", bloc: "DRO" },
   { date: "5 février 2026", type: "Déclaration", titre: "Guedj candidat sans primaire", texte: "Le socialiste se déclare pour une gauche \"républicaine, universaliste et laïque\", hors primaire.", bloc: "SOC" },
   { date: "22 octobre 2025", type: "Déclaration", titre: "Tondelier se déclare", texte: "La patronne des Écologistes annonce \"un acte d'amour pour la France\".", bloc: "ECO" },
 ];
 
 export const AGENDA = [
-  { date: "Début juillet 2026", evt: "Congrès du PCF à Lille : décision sur la candidature Roussel" },
+  { date: "3-5 juillet 2026", evt: "Congrès du PCF à Lille : décision sur la candidature Roussel" },
   { date: "9 juillet 2026", evt: "Vote des militants PS : grande primaire de gauche ou désignation resserrée au sein du pôle socialiste" },
   { date: "11 octobre 2026", evt: "Primaire de la gauche unitaire (L'Après, Écologistes, Debout !, Génération·s, UDB), sans LFI, Place publique ni PCF" },
   { date: "Mars 2027", evt: "Dépôt des 500 parrainages et publication de la liste officielle des candidats" },
