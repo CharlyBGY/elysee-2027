@@ -4,8 +4,8 @@
 //  Après modification sur GitHub, le site se met à jour tout seul.
 // ═══════════════════════════════════════════════════════════════════
 
-// ─ Données au 3 juillet 2026 (sources : Ifop 25/06, Odoxa 26/05, LCP, Les Échos, franceinfo) ─
-export const MISE_A_JOUR = "3 juillet 2026";
+// ─ Données au 4 juillet 2026 (sources : Ifop 25/06, Odoxa 26/05, LCP, Les Échos, franceinfo, ICI) ─
+export const MISE_A_JOUR = "4 juillet 2026";
 
 export const BLOCS = {
   EXG: { label: "Extrême gauche", color: "#8E1F2F" },
@@ -29,7 +29,7 @@ export const CANDIDATS = [
   { nom: "Gabriel Attal", parti: "Renaissance", bloc: "CEN", statut: "Déclaré", note: "Progresse mais reste derrière Édouard Philippe dans le bloc central.", sondage: 8 },
   { nom: "Bruno Retailleau", parti: "Les Républicains", bloc: "DRO", statut: "Déclaré", note: "Porte la candidature LR face à Xavier Bertrand.", sondage: 8 },
   { nom: "Éric Zemmour", parti: "Reconquête", bloc: "EXD", statut: "Déclaré", note: "Deuxième candidature, autour de 4 %.", sondage: 4 },
-  { nom: "Fabien Roussel", parti: "PCF", bloc: "GAU", statut: "Congrès", note: "Candidature tranchée au congrès du PCF début juillet à Lille. Les militants ont voté à plus de 60 % pour une candidature communiste.", sondage: 3 },
+  { nom: "Fabien Roussel", parti: "PCF", bloc: "GAU", statut: "Congrès", note: "S'est dit \"prêt à mener ce combat une nouvelle fois\" au 40e congrès de Lille (3-5 juillet), où le texte de sa direction a recueilli 61,4 % des voix. Les militants désigneront formellement leur candidat le 6 septembre.", sondage: 3 },
   { nom: "Marine Tondelier", parti: "Les Écologistes", bloc: "ECO", statut: "Primaire", note: "Déclarée le 22 octobre 2025, \"un acte d'amour pour la France\". Candidate à la primaire de la gauche unitaire du 11 octobre.", sondage: 2.5 },
   { nom: "Nicolas Dupont-Aignan", parti: "Debout la France", bloc: "EXD", statut: "Déclaré", note: "4e candidature, annoncée en mars 2025.", sondage: 2 },
   { nom: "Nathalie Arthaud", parti: "Lutte ouvrière", bloc: "EXG", statut: "Déclarée", note: "4e candidature pour porter la voix des travailleurs.", sondage: 0.5 },
@@ -55,7 +55,7 @@ export const CANDIDATS = [
 export const ESSENTIEL = {
   semaine: "du 29 juin au 5 juillet 2026",
   breves: [
-    { titre: "Le PCF tranche à Lille", texte: "Congrès décisif du 3 au 5 juillet : les communistes décident du sort de la candidature Roussel, déjà plébiscitée par plus de 60 % des militants." },
+    { titre: "Roussel prêt, le PCF votera le 6 septembre", texte: "Au 40e congrès de Lille, Fabien Roussel se dit \"prêt à mener ce combat une nouvelle fois\" ; le texte de sa direction recueille 61,4 % des voix." },
     { titre: "Le PS suspendu au vote militant", texte: "Le 9 juillet, les adhérents choisiront entre la grande primaire de gauche (ligne Faure) et une désignation resserrée du pôle socialiste (ligne Vallaud)." },
     { titre: "Lagarde entrouvre la porte", texte: "La présidente de la BCE n'exclut pas un départ anticipé de Francfort pour porter \"une voix européenne\" dans le débat présidentiel (Les Échos)." },
     { titre: "Ruffin repart sur la probité", texte: "Le candidat à la primaire de la gauche propose une \"loi de séparation de l'argent et de l'État\" pour relancer sa campagne." },
@@ -66,7 +66,7 @@ export const ESSENTIEL = {
 // Fil d'actualité, du plus récent au plus ancien.
 // type : "Sondage" | "Déclaration" | "Parti" | "Campagne" | "Agenda"
 export const FIL = [
-  { date: "3 juillet 2026", type: "Parti", titre: "Le PCF ouvre son congrès décisif à Lille", texte: "Jusqu'au 5 juillet, les communistes tranchent la question de la candidature Roussel. Les militants ont déjà voté à plus de 60 % pour une candidature issue de leurs rangs.", bloc: "GAU" },
+  { date: "4 juillet 2026", type: "Parti", titre: "Au congrès de Lille, Roussel se dit prêt", texte: "Devant les 750 délégués du 40e congrès du PCF, Fabien Roussel se dit \"prêt à mener ce combat une nouvelle fois\". Le texte de sa direction recueille 61,4 % des voix. Les militants désigneront leur candidat le 6 septembre.", bloc: "GAU" },
   { date: "2 juillet 2026", type: "Déclaration", titre: "Lagarde n'exclut pas de peser sur 2027", texte: "Dans Les Échos, la présidente de la BCE n'écarte pas un départ anticipé de Francfort pour porter \"une voix européenne\" dans le débat présidentiel. Elle ne déclare aucune candidature.", bloc: "DIV" },
   { date: "2 juillet 2026", type: "Campagne", titre: "Ruffin relance sa campagne sur la probité", texte: "Après la polémique autour de sa bande dessinée, le candidat propose une \"loi de séparation de l'argent et de l'État\" : dix ans d'interdiction de pantouflage pour les ministres, fin des avantages des anciens présidents.", bloc: "GAU" },
   { date: "30 juin 2026", type: "Parti", titre: "Le PS renvoie la primaire aux militants", texte: "À l'issue du conseil national, les militants socialistes voteront le 9 juillet entre la grande primaire de gauche (ligne Faure) et une désignation resserrée issue du pôle socialiste (ligne Vallaud).", bloc: "SOC" },
@@ -87,6 +87,7 @@ export const FIL = [
 export const AGENDA = [
   { date: "3-5 juillet 2026", evt: "Congrès du PCF à Lille : décision sur la candidature Roussel" },
   { date: "9 juillet 2026", evt: "Vote des militants PS : grande primaire de gauche ou désignation resserrée au sein du pôle socialiste" },
+  { date: "6 septembre 2026", evt: "Vote des militants du PCF pour désigner leur candidat à la présidentielle" },
   { date: "11 octobre 2026", evt: "Primaire de la gauche unitaire (L'Après, Écologistes, Debout !, Génération·s, UDB), sans LFI, Place publique ni PCF" },
   { date: "Mars 2027", evt: "Dépôt des 500 parrainages et publication de la liste officielle des candidats" },
   { date: "18 avril 2027", evt: "Premier tour de l'élection présidentielle" },
