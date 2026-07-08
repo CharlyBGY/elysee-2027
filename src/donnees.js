@@ -4,8 +4,8 @@
 //  Après modification sur GitHub, le site se met à jour tout seul.
 // ═══════════════════════════════════════════════════════════════════
 
-// ─ Données au 4 juillet 2026 (sources : Ifop 25/06, Odoxa 26/05, LCP, Les Échos, franceinfo, ICI) ─
-export const MISE_A_JOUR = "4 juillet 2026";
+// ─ Données au 8 juillet 2026 (sources : Ifop 25/06, Odoxa 26/05, LCP, Les Échos, franceinfo, France 3, RTS) ─
+export const MISE_A_JOUR = "8 juillet 2026";
 
 export const BLOCS = {
   EXG: { label: "Extrême gauche", color: "#8E1F2F" },
@@ -21,15 +21,15 @@ export const BLOCS = {
 // statut : "Déclaré(e)" | "Primaire" | "Congrès" | "Pressenti"
 // sondage : pourcentage de la dernière vague, ou null si non testé
 export const CANDIDATS = [
-  { nom: "Jordan Bardella", parti: "Rassemblement national", bloc: "EXD", statut: "Pressenti", note: "Plan B du RN si Marine Le Pen reste inéligible. Domine tous les sondages (32 à 36 %).", sondage: 36 },
-  { nom: "Marine Le Pen", parti: "Rassemblement national", bloc: "EXD", statut: "Déclarée", note: "Candidature suspendue à son appel après sa condamnation de mars 2025.", sondage: null },
+  { nom: "Jordan Bardella", parti: "Rassemblement national", bloc: "EXD", statut: "Pressenti", note: "Donné en tête de tous les sondages (32 à 36 %). Le retour en lice de Marine Le Pen, de nouveau éligible depuis le 7 juillet, repose la question de qui portera les couleurs du RN.", sondage: 36 },
+  { nom: "Marine Le Pen", parti: "Rassemblement national", bloc: "EXD", statut: "Déclarée", note: "De nouveau éligible : la cour d'appel de Paris a ramené le 7 juillet 2026 son inéligibilité à 15 mois, purgés depuis le 1er juillet. Condamnée à trois ans de prison dont un an ferme sous bracelet électronique et 100 000 € d'amende, elle confirme briguer l'Élysée.", sondage: null },
   { nom: "Édouard Philippe", parti: "Horizons", bloc: "CEN", statut: "Déclaré", note: "Parti en campagne dès septembre 2024. En recul dans les dernières vagues.", sondage: 14 },
   { nom: "Jean-Luc Mélenchon", parti: "La France insoumise", bloc: "GAU", statut: "Déclaré", note: "4e candidature confirmée fin mai 2026. Forte dynamique, près de 200 000 soutiens en ligne.", sondage: 13 },
   { nom: "Raphaël Glucksmann", parti: "Place publique", bloc: "SOC", statut: "Déclaré", note: "Espace social-démocrate, en concurrence directe avec Mélenchon pour la 2e place à gauche.", sondage: 9 },
   { nom: "Gabriel Attal", parti: "Renaissance", bloc: "CEN", statut: "Déclaré", note: "Progresse mais reste derrière Édouard Philippe dans le bloc central.", sondage: 8 },
   { nom: "Bruno Retailleau", parti: "Les Républicains", bloc: "DRO", statut: "Déclaré", note: "Porte la candidature LR face à Xavier Bertrand.", sondage: 8 },
   { nom: "Éric Zemmour", parti: "Reconquête", bloc: "EXD", statut: "Déclaré", note: "Deuxième candidature, autour de 4 %.", sondage: 4 },
-  { nom: "Fabien Roussel", parti: "PCF", bloc: "GAU", statut: "Congrès", note: "S'est dit \"prêt à mener ce combat une nouvelle fois\" au 40e congrès de Lille (3-5 juillet), où le texte de sa direction a recueilli 61,4 % des voix. Les militants désigneront formellement leur candidat le 6 septembre.", sondage: 3 },
+  { nom: "Fabien Roussel", parti: "PCF", bloc: "GAU", statut: "Congrès", note: "Réélu à 70,1 % à la tête du PCF au 40e congrès de Lille. Il estime sa candidature \"faite à 85 %\" ; désignation formelle par le vote des militants le 6 septembre, avant la Fête de l'Humanité.", sondage: 3 },
   { nom: "Marine Tondelier", parti: "Les Écologistes", bloc: "ECO", statut: "Primaire", note: "Déclarée le 22 octobre 2025, \"un acte d'amour pour la France\". Candidate à la primaire de la gauche unitaire du 11 octobre.", sondage: 2.5 },
   { nom: "Nicolas Dupont-Aignan", parti: "Debout la France", bloc: "EXD", statut: "Déclaré", note: "4e candidature, annoncée en mars 2025.", sondage: 2 },
   { nom: "Nathalie Arthaud", parti: "Lutte ouvrière", bloc: "EXG", statut: "Déclarée", note: "4e candidature pour porter la voix des travailleurs.", sondage: 0.5 },
@@ -53,19 +53,19 @@ export const CANDIDATS = [
 // Ligne éditoriale : faits structurants uniquement (déclarations, décisions de
 // partis, sondages marquants, échéances) — pas de petites phrases ni polémiques.
 export const ESSENTIEL = {
-  semaine: "du 29 juin au 5 juillet 2026",
+  semaine: "du 6 au 12 juillet 2026",
   breves: [
-    { titre: "Roussel prêt, le PCF votera le 6 septembre", texte: "Au 40e congrès de Lille, Fabien Roussel se dit \"prêt à mener ce combat une nouvelle fois\" ; le texte de sa direction recueille 61,4 % des voix." },
-    { titre: "Le PS suspendu au vote militant", texte: "Le 9 juillet, les adhérents choisiront entre la grande primaire de gauche (ligne Faure) et une désignation resserrée du pôle socialiste (ligne Vallaud)." },
-    { titre: "Lagarde entrouvre la porte", texte: "La présidente de la BCE n'exclut pas un départ anticipé de Francfort pour porter \"une voix européenne\" dans le débat présidentiel (Les Échos)." },
-    { titre: "Ruffin repart sur la probité", texte: "Le candidat à la primaire de la gauche propose une \"loi de séparation de l'argent et de l'État\" pour relancer sa campagne." },
-    { titre: "Brun, candidat de la feuille de paie", texte: "Le député PS de l'Eure s'est déclaré le 30 juin sur RMC, dans le cadre d'une éventuelle primaire interne socialiste." },
+    { titre: "Le Pen de nouveau éligible", texte: "La cour d'appel de Paris ramène le 7 juillet son inéligibilité à 15 mois, déjà purgés : elle peut concourir en 2027 et confirme sa candidature. La question du candidat RN, entre elle et Bardella, est relancée." },
+    { titre: "Roussel réélu, candidat \"à 85 %\"", texte: "Réélu à 70,1 % à la tête du PCF au congrès de Lille, il sera formellement désigné candidat après le vote des militants le 6 septembre." },
+    { titre: "Le PS vote jeudi", texte: "Les militants socialistes choisissent le 9 juillet entre la grande primaire de gauche (ligne Faure) et une désignation resserrée du pôle socialiste (ligne Vallaud)." },
   ],
 };
 
 // Fil d'actualité, du plus récent au plus ancien.
-// type : "Sondage" | "Déclaration" | "Parti" | "Campagne" | "Agenda"
+// type : "Sondage" | "Déclaration" | "Parti" | "Campagne" | "Justice" | "Agenda"
 export const FIL = [
+  { date: "7 juillet 2026", type: "Justice", titre: "Le Pen redevient éligible et confirme sa candidature", texte: "La cour d'appel de Paris confirme sa culpabilité mais ramène son inéligibilité à 15 mois, purgés depuis le 1er juillet. Condamnée à trois ans de prison dont un an ferme sous bracelet électronique, Marine Le Pen annonce briguer l'Élysée en 2027.", bloc: "EXD" },
+  { date: "5 juillet 2026", type: "Parti", titre: "Roussel réélu, cap sur le 6 septembre", texte: "Le congrès de Lille s'achève sur la réélection de Fabien Roussel à la tête du PCF (70,1 %). Sa candidature, \"faite à 85 %\", sera officialisée après le vote militant du 6 septembre.", bloc: "GAU" },
   { date: "4 juillet 2026", type: "Parti", titre: "Au congrès de Lille, Roussel se dit prêt", texte: "Devant les 750 délégués du 40e congrès du PCF, Fabien Roussel se dit \"prêt à mener ce combat une nouvelle fois\". Le texte de sa direction recueille 61,4 % des voix. Les militants désigneront leur candidat le 6 septembre.", bloc: "GAU" },
   { date: "2 juillet 2026", type: "Déclaration", titre: "Lagarde n'exclut pas de peser sur 2027", texte: "Dans Les Échos, la présidente de la BCE n'écarte pas un départ anticipé de Francfort pour porter \"une voix européenne\" dans le débat présidentiel. Elle ne déclare aucune candidature.", bloc: "DIV" },
   { date: "2 juillet 2026", type: "Campagne", titre: "Ruffin relance sa campagne sur la probité", texte: "Après la polémique autour de sa bande dessinée, le candidat propose une \"loi de séparation de l'argent et de l'État\" : dix ans d'interdiction de pantouflage pour les ministres, fin des avantages des anciens présidents.", bloc: "GAU" },
@@ -85,7 +85,6 @@ export const FIL = [
 ];
 
 export const AGENDA = [
-  { date: "3-5 juillet 2026", evt: "Congrès du PCF à Lille : décision sur la candidature Roussel" },
   { date: "9 juillet 2026", evt: "Vote des militants PS : grande primaire de gauche ou désignation resserrée au sein du pôle socialiste" },
   { date: "6 septembre 2026", evt: "Vote des militants du PCF pour désigner leur candidat à la présidentielle" },
   { date: "11 octobre 2026", evt: "Primaire de la gauche unitaire (L'Après, Écologistes, Debout !, Génération·s, UDB), sans LFI, Place publique ni PCF" },
