@@ -4,8 +4,8 @@
 //  Après modification sur GitHub, le site se met à jour tout seul.
 // ═══════════════════════════════════════════════════════════════════
 
-// ─ Données au 8 juillet 2026 (sources : Ifop 25/06, Odoxa 26/05, LCP, Les Échos, franceinfo, France 3, RTS) ─
-export const MISE_A_JOUR = "8 juillet 2026";
+// ─ Données au 17 juillet 2026 (sources : Ifop-Le Figaro 7-8/07, Public Sénat, LCP, franceinfo, France 24) ─
+export const MISE_A_JOUR = "17 juillet 2026";
 
 export const BLOCS = {
   EXG: { label: "Extrême gauche", color: "#8E1F2F" },
@@ -21,8 +21,7 @@ export const BLOCS = {
 // statut : "Déclaré(e)" | "Primaire" | "Congrès" | "Pressenti"
 // sondage : pourcentage de la dernière vague, ou null si non testé
 export const CANDIDATS = [
-  { nom: "Jordan Bardella", parti: "Rassemblement national", bloc: "EXD", statut: "Pressenti", note: "Donné en tête de tous les sondages (32 à 36 %). Le retour en lice de Marine Le Pen, de nouveau éligible depuis le 7 juillet, repose la question de qui portera les couleurs du RN.", sondage: 36 },
-  { nom: "Marine Le Pen", parti: "Rassemblement national", bloc: "EXD", statut: "Déclarée", note: "De nouveau éligible : la cour d'appel de Paris a ramené le 7 juillet 2026 son inéligibilité à 15 mois, purgés depuis le 1er juillet. Condamnée à trois ans de prison dont un an ferme sous bracelet électronique et 100 000 € d'amende, elle confirme briguer l'Élysée.", sondage: null },
+  { nom: "Marine Le Pen", parti: "Rassemblement national", bloc: "EXD", statut: "Déclarée", note: "Confirme sa candidature le 7 juillet sur TF1, quelques heures après sa condamnation en appel (trois ans de prison dont un an aménageable sous bracelet électronique, 100 000 € d'amende, inéligibilité ramenée à 45 mois dont 30 avec sursis). Son pourvoi en cassation, suspensif, lui permet de faire campagne sans bracelet ; la Cour de cassation veut statuer avant le premier tour. Jordan Bardella, qui aurait pu la remplacer, ne sera pas candidat et fait campagne à ses côtés.", sondage: 36 },
   { nom: "Édouard Philippe", parti: "Horizons", bloc: "CEN", statut: "Déclaré", note: "Parti en campagne dès septembre 2024. En recul dans les dernières vagues.", sondage: 14 },
   { nom: "Jean-Luc Mélenchon", parti: "La France insoumise", bloc: "GAU", statut: "Déclaré", note: "4e candidature confirmée fin mai 2026. Forte dynamique, près de 200 000 soutiens en ligne.", sondage: 13 },
   { nom: "Raphaël Glucksmann", parti: "Place publique", bloc: "SOC", statut: "Déclaré", note: "Espace social-démocrate, en concurrence directe avec Mélenchon pour la 2e place à gauche.", sondage: 9 },
@@ -30,19 +29,17 @@ export const CANDIDATS = [
   { nom: "Bruno Retailleau", parti: "Les Républicains", bloc: "DRO", statut: "Déclaré", note: "Porte la candidature LR face à Xavier Bertrand.", sondage: 8 },
   { nom: "Éric Zemmour", parti: "Reconquête", bloc: "EXD", statut: "Déclaré", note: "Deuxième candidature, autour de 4 %.", sondage: 4 },
   { nom: "Fabien Roussel", parti: "PCF", bloc: "GAU", statut: "Congrès", note: "Réélu à 70,1 % à la tête du PCF au 40e congrès de Lille. Il estime sa candidature \"faite à 85 %\" ; désignation formelle par le vote des militants le 6 septembre, avant la Fête de l'Humanité.", sondage: 3 },
-  { nom: "Marine Tondelier", parti: "Les Écologistes", bloc: "ECO", statut: "Primaire", note: "Déclarée le 22 octobre 2025, \"un acte d'amour pour la France\". Candidate à la primaire de la gauche unitaire du 11 octobre.", sondage: 2.5 },
+  { nom: "Marine Tondelier", parti: "Les Écologistes", bloc: "ECO", statut: "Déclarée", note: "Déclarée le 22 octobre 2025, \"un acte d'amour pour la France\". La primaire de la gauche unitaire à laquelle elle était candidate est de fait abandonnée après les retraits du PS, de Benjamin Lucas-Lundy et de Clémentine Autain (juillet) ; réunit le conseil fédéral des Écologistes pour trancher sur la suite, entre candidature autonome et ralliement à une autre offre de gauche.", sondage: 3.5 },
   { nom: "Nicolas Dupont-Aignan", parti: "Debout la France", bloc: "EXD", statut: "Déclaré", note: "4e candidature, annoncée en mars 2025.", sondage: 2 },
   { nom: "Nathalie Arthaud", parti: "Lutte ouvrière", bloc: "EXG", statut: "Déclarée", note: "4e candidature pour porter la voix des travailleurs.", sondage: 0.5 },
-  { nom: "François Ruffin", parti: "Debout !", bloc: "GAU", statut: "Primaire", note: "Candidat à la primaire de la gauche unitaire, confirmé le 26 janvier 2026. Campagne du \"pari du peuple\" relancée le 2 juillet sur le thème de la probité, après la polémique autour de sa bande dessinée. Une centaine de promesses de parrainages engrangées.", sondage: null },
+  { nom: "François Ruffin", parti: "Debout !", bloc: "GAU", statut: "Primaire", note: "Candidat à la primaire de la gauche unitaire, confirmé le 26 janvier 2026, désormais fragilisée après les retraits du PS, de Lucas-Lundy et d'Autain (juillet). Campagne du \"pari du peuple\" relancée le 2 juillet sur le thème de la probité, après la polémique autour de sa bande dessinée.", sondage: null },
   { nom: "Karim Bouamrane", parti: "PS", bloc: "SOC", statut: "Déclaré", note: "Maire de Saint-Ouen, déclaré le 9 juin 2026 : \"pour une France humaine et une France forte\".", sondage: null },
   { nom: "Jérôme Guedj", parti: "PS", bloc: "SOC", statut: "Déclaré", note: "Déclaré le 5 février 2026, sans passer par la primaire, ligne \"gauche républicaine et laïque\".", sondage: null },
   { nom: "Philippe Brun", parti: "PS", bloc: "SOC", statut: "Primaire", note: "Déclaré le 30 juin 2026 sur RMC, dans le cadre d'une éventuelle primaire interne au PS. Candidat \"de la feuille de paie\" et du pouvoir d'achat.", sondage: null },
-  { nom: "Benjamin Lucas-Lundy", parti: "Génération·s", bloc: "SOC", statut: "Primaire", note: "Candidat à la primaire de la gauche dite Front populaire 2027, défenseur de l'union de toute la gauche.", sondage: null },
-  { nom: "Lydie Massard", parti: "Union démocratique bretonne", bloc: "ECO", statut: "Primaire", note: "Ex-eurodéputée, candidate à la primaire de la gauche depuis avril 2026.", sondage: null },
+  { nom: "Lydie Massard", parti: "Union démocratique bretonne", bloc: "ECO", statut: "Primaire", note: "Ex-eurodéputée, candidate à la primaire de la gauche depuis avril 2026, désormais fragilisée après les retraits du PS, de Lucas-Lundy et d'Autain (juillet).", sondage: null },
   { nom: "Bernard Cazeneuve", parti: "La Convention", bloc: "SOC", statut: "Pressenti", note: "\"Si c'est à moi de prendre cette responsabilité, je la prendrai.\" Pas de candidature à une primaire.", sondage: null },
   { nom: "Xavier Bertrand", parti: "Sans étiquette (ex LR)", bloc: "DRO", statut: "Déclaré", note: "Se présente cette fois hors du cadre LR.", sondage: null },
   { nom: "David Lisnard", parti: "Nouvelle Énergie (ex LR)", bloc: "DRO", statut: "Déclaré", note: "Maire de Cannes, déclaré le 31 mars 2026 au 20 h de France 2 en quittant LR. Projet \"libéral, sécuritaire, éducatif et scientifique\". Plaide pour une grande primaire ouverte à droite. Crédité d'environ 2 % dans les premières hypothèses testées.", sondage: null },
-  { nom: "Clémentine Autain", parti: "L'Après", bloc: "GAU", statut: "Primaire", note: "Candidate à la primaire de la gauche dite Front populaire 2027.", sondage: null },
   { nom: "Delphine Batho", parti: "Génération écologie", bloc: "ECO", statut: "Déclarée", note: "\"Reconstruire une écologie capable de gouverner\".", sondage: null },
   { nom: "Dominique de Villepin", parti: "La France humaniste", bloc: "DIV", statut: "Pressenti", note: "Multiplie les déplacements, une centaine de personnes mobilisées sur les parrainages.", sondage: null },
   { nom: "Christine Lagarde", parti: "Présidente de la BCE", bloc: "DIV", statut: "Pressenti", note: "N'exclut pas de quitter la BCE avant la fin de son mandat pour porter \"une voix européenne\" dans le débat présidentiel (Les Échos, 2 juillet 2026). Aucune candidature déclarée.", sondage: null },
@@ -53,18 +50,23 @@ export const CANDIDATS = [
 // Ligne éditoriale : faits structurants uniquement (déclarations, décisions de
 // partis, sondages marquants, échéances) — pas de petites phrases ni polémiques.
 export const ESSENTIEL = {
-  semaine: "du 6 au 12 juillet 2026",
+  semaine: "du 13 au 19 juillet 2026",
   breves: [
-    { titre: "Le Pen de nouveau éligible", texte: "La cour d'appel de Paris ramène le 7 juillet son inéligibilité à 15 mois, déjà purgés : elle peut concourir en 2027 et confirme sa candidature. La question du candidat RN, entre elle et Bardella, est relancée." },
-    { titre: "Roussel réélu, candidat \"à 85 %\"", texte: "Réélu à 70,1 % à la tête du PCF au congrès de Lille, il sera formellement désigné candidat après le vote des militants le 6 septembre." },
-    { titre: "Le PS vote jeudi", texte: "Les militants socialistes choisissent le 9 juillet entre la grande primaire de gauche (ligne Faure) et une désignation resserrée du pôle socialiste (ligne Vallaud)." },
+    { titre: "Marine Le Pen confirmée candidate du RN", texte: "Elle annonce sa candidature le 7 juillet sur TF1, quelques heures après sa condamnation en appel. Son pourvoi en cassation, suspensif, lui permet de faire campagne sans bracelet électronique ; Jordan Bardella confirme le 8 juillet qu'il ne se présentera pas." },
+    { titre: "Le PS choisit une primaire fermée, Olivier Faure désavoué", texte: "55,5 % des militants socialistes optent le 9 juillet pour une primaire réservée au PS et au pôle socialiste, rejetant la primaire ouverte défendue par leur premier secrétaire." },
+    { titre: "La primaire de la gauche unitaire de fait abandonnée", texte: "Après les retraits de Benjamin Lucas-Lundy (7 juillet) et Clémentine Autain (11 juillet), Marine Tondelier acte l'échec du projet et réunit les Écologistes pour trancher sur la suite." },
+    { titre: "Première vague de sondages testant Marine Le Pen", texte: "Ifop, Elabe, Verian, Harris Interactive et OpinionWay la créditent de 35 à 37 % au premier tour, loin devant Philippe et Mélenchon, et largement gagnante au second tour." },
   ],
 };
 
 // Fil d'actualité, du plus récent au plus ancien.
 // type : "Sondage" | "Déclaration" | "Parti" | "Campagne" | "Justice" | "Agenda"
 export const FIL = [
-  { date: "7 juillet 2026", type: "Justice", titre: "Le Pen redevient éligible et confirme sa candidature", texte: "La cour d'appel de Paris confirme sa culpabilité mais ramène son inéligibilité à 15 mois, purgés depuis le 1er juillet. Condamnée à trois ans de prison dont un an ferme sous bracelet électronique, Marine Le Pen annonce briguer l'Élysée en 2027.", bloc: "EXD" },
+  { date: "11 juillet 2026", type: "Parti", titre: "La primaire de la gauche unitaire vacille", texte: "Après les retraits de Benjamin Lucas-Lundy (7 juillet) et de Clémentine Autain (11 juillet), qui juge \"ridicule\" l'empilement des candidatures à gauche, Marine Tondelier acte que \"les adhérents du PS ont décidé d'enterrer la primaire\" et doit trancher sur une candidature autonome des Écologistes.", bloc: "GAU" },
+  { date: "9 juillet 2026", type: "Parti", titre: "Le PS choisit la primaire fermée, Faure désavoué", texte: "55,5 % des militants socialistes optent pour une primaire réservée au PS et au pôle socialiste, contre la primaire ouverte défendue par Olivier Faure (44,5 %). Mis en minorité pour la première fois en huit ans, le premier secrétaire ne tranche pas encore sur sa propre candidature.", bloc: "SOC" },
+  { date: "8 juillet 2026", type: "Déclaration", titre: "Bardella confirme qu'il ne sera pas candidat", texte: "Le président du RN dit n'être \"ni soulagé, ni déçu\" de ne pas porter les couleurs du parti à la présidentielle et fera campagne aux côtés de Marine Le Pen.", bloc: "EXD" },
+  { date: "7-8 juillet 2026", type: "Sondage", titre: "Première vague testant Marine Le Pen : 35 à 37 %", texte: "Ifop, Elabe, Verian, Harris Interactive et OpinionWay publient leur première vague testant Marine Le Pen, désormais candidate déclarée : créditée de 35 à 37 % au premier tour, loin devant Édouard Philippe (16 à 19 %) et Jean-Luc Mélenchon (15 à 16 %). Au second tour, Ifop la donne gagnante 54-46 face à Philippe.", bloc: "EXD" },
+  { date: "7 juillet 2026", type: "Justice", titre: "Le Pen redevient éligible et confirme sa candidature", texte: "La cour d'appel de Paris confirme sa culpabilité mais ramène son inéligibilité à 45 mois dont 30 avec sursis. Condamnée à trois ans de prison dont un an aménageable sous bracelet électronique, Marine Le Pen annonce briguer l'Élysée en 2027 et se pourvoit en cassation.", bloc: "EXD" },
   { date: "5 juillet 2026", type: "Parti", titre: "Roussel réélu, cap sur le 6 septembre", texte: "Le congrès de Lille s'achève sur la réélection de Fabien Roussel à la tête du PCF (70,1 %). Sa candidature, \"faite à 85 %\", sera officialisée après le vote militant du 6 septembre.", bloc: "GAU" },
   { date: "4 juillet 2026", type: "Parti", titre: "Au congrès de Lille, Roussel se dit prêt", texte: "Devant les 750 délégués du 40e congrès du PCF, Fabien Roussel se dit \"prêt à mener ce combat une nouvelle fois\". Le texte de sa direction recueille 61,4 % des voix. Les militants désigneront leur candidat le 6 septembre.", bloc: "GAU" },
   { date: "2 juillet 2026", type: "Déclaration", titre: "Lagarde n'exclut pas de peser sur 2027", texte: "Dans Les Échos, la présidente de la BCE n'écarte pas un départ anticipé de Francfort pour porter \"une voix européenne\" dans le débat présidentiel. Elle ne déclare aucune candidature.", bloc: "DIV" },
@@ -80,14 +82,12 @@ export const FIL = [
   { date: "Mai 2026", type: "Agenda", titre: "Dates du scrutin fixées", texte: "Le Conseil des ministres arrête les dates : 1er tour le 18 avril 2027, 2nd tour le 2 mai 2027.", bloc: "DIV" },
   { date: "25 avril 2026", type: "Déclaration", titre: "Ruffin fait le \"pari du peuple\"", texte: "Le député-reporter lance sa campagne avec son mouvement Debout !.", bloc: "GAU" },
   { date: "31 mars 2026", type: "Déclaration", titre: "Lisnard quitte LR et se déclare", texte: "Au 20 h de France 2, le maire de Cannes annonce sa candidature avec son mouvement Nouvelle Énergie et plaide pour une grande primaire ouverte à droite.", bloc: "DRO" },
-  { date: "5 février 2026", type: "Déclaration", titre: "Guedj candidat sans primaire", texte: "Le socialiste se déclare pour une gauche \"républicaine, universaliste et laïque\", hors primaire.", bloc: "SOC" },
-  { date: "22 octobre 2025", type: "Déclaration", titre: "Tondelier se déclare", texte: "La patronne des Écologistes annonce \"un acte d'amour pour la France\".", bloc: "ECO" },
 ];
 
 export const AGENDA = [
-  { date: "9 juillet 2026", evt: "Vote des militants PS : grande primaire de gauche ou désignation resserrée au sein du pôle socialiste" },
   { date: "6 septembre 2026", evt: "Vote des militants du PCF pour désigner leur candidat à la présidentielle" },
-  { date: "11 octobre 2026", evt: "Primaire de la gauche unitaire (L'Après, Écologistes, Debout !, Génération·s, UDB), sans LFI, Place publique ni PCF" },
+  { date: "11 octobre 2026", evt: "Primaire de la gauche unitaire (Écologistes, Debout !, UDB), fragilisée par les retraits du PS, de Lucas-Lundy et d'Autain" },
+  { date: "Octobre 2026 (date à fixer)", evt: "Primaire du pôle socialiste (PS, Place publique) pour désigner un candidat de la gauche sociale-démocrate" },
   { date: "Mars 2027", evt: "Dépôt des 500 parrainages et publication de la liste officielle des candidats" },
   { date: "18 avril 2027", evt: "Premier tour de l'élection présidentielle" },
   { date: "2 mai 2027", evt: "Second tour de l'élection présidentielle" },
@@ -95,7 +95,8 @@ export const AGENDA = [
 
 // Courbes disponibles dans le graphique de tendance
 export const SERIES = [
-  { key: "Bardella", color: "#1B3A63" },
+  { key: "Le Pen", color: "#1B3A63" },
+  { key: "Bardella", color: "#7C93B3" },
   { key: "Philippe", color: "#E8952F" },
   { key: "Mélenchon", color: "#C7314A" },
   { key: "Glucksmann", color: "#E86B8A" },
@@ -114,16 +115,17 @@ export const TENDANCE = [
   { vague: "Avril 26", Bardella: 32, Philippe: 19, "Mélenchon": 13, Glucksmann: 11, Attal: 6, Retailleau: 6, Zemmour: 5, Roussel: 3, Tondelier: 3, "Dupont-Aignan": 2, Arthaud: 0.5 },
   { vague: "Mai 26", Bardella: 32, Philippe: 17, "Mélenchon": 16, Glucksmann: 11, Attal: 7, Retailleau: 7, Zemmour: 4, Roussel: 3, Tondelier: 2.5, "Dupont-Aignan": 2, Arthaud: 0.5 },
   { vague: "Juin 26", Bardella: 36, Philippe: 14, "Mélenchon": 13, Glucksmann: 9, Attal: 8, Retailleau: 8, Zemmour: 4, Roussel: 3, Tondelier: 2.5, "Dupont-Aignan": 2, Arthaud: 0.5 },
+  { vague: "Juil 26", "Le Pen": 36, Philippe: 19, "Mélenchon": 15, Glucksmann: 9, Retailleau: 8, Zemmour: 4, Roussel: 3, Tondelier: 3.5, "Dupont-Aignan": 2, Arthaud: 0.5 },
 ];
 
-export const LIGNES_PAR_DEFAUT = ["Bardella", "Philippe", "Mélenchon", "Glucksmann"];
+export const LIGNES_PAR_DEFAUT = ["Le Pen", "Philippe", "Mélenchon", "Glucksmann"];
 
 // Encadré "dernière vague" affiché en tête de l'onglet Sondages
-export const NOTE_SONDAGES = "Dernière vague : Ifop-Fiducial, 25 juin 2026. Marge d'erreur de 2 à 3 points. À un an du scrutin, les sondages ont une valeur prédictive limitée.";
+export const NOTE_SONDAGES = "Dernière vague : Ifop-Fiducial pour Le Figaro/LCI/Sud Radio, 7-8 juillet 2026, hypothèse Marine Le Pen face à Édouard Philippe (résultats convergents avec Elabe, Verian, Harris Interactive et OpinionWay parus la même semaine). Marge d'erreur de 2 à 3 points. À un an du scrutin, les sondages ont une valeur prédictive limitée.";
 
 // Hypothèse de second tour (encadré sombre de l'onglet Sondages)
 export const SECOND_TOUR = {
-  gauche: { nom: "Bardella", score: 52, bloc: "EXD" },
-  droite: { nom: "Philippe", score: 48, bloc: "CEN" },
-  source: "Odoxa, 20-21 mai 2026, 1 005 personnes. Il y a deux mois, le rapport était inversé.",
+  gauche: { nom: "Le Pen", score: 54, bloc: "EXD" },
+  droite: { nom: "Philippe", score: 46, bloc: "CEN" },
+  source: "Ifop-Fiducial, 7-8 juillet 2026, 1 507 personnes. Harris Interactive, la même semaine, mesure un écart plus resserré (51-49).",
 };
